@@ -28,7 +28,9 @@ public class CalendarSpringController {
     @RequestMapping(path="/", method = RequestMethod.GET)
     public String home(HttpSession session, Model model) {
         String username = (String) session.getAttribute("username");
+        model.addAttribute("events", events.findAll());
         model.addAttribute("username", username);
+        model.addAttribute("now", LocalDateTime.now());
         return "home";
     }
 
